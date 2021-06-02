@@ -1,7 +1,13 @@
 from flask import Flask, render_template
 from py1337x import py1337x
+import sys
+import logging
 
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
+
 tor = py1337x(proxy='1337x.to')
 
 @app.route("/")
